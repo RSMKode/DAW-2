@@ -8,7 +8,7 @@
     <h1>Ejercicio 12</h1>
     <ol>
         <?php
-        $numeros = array();
+        $numeros = [];
         $tiradas = 20;
         $c1 = 0;
         $c2 = 0;
