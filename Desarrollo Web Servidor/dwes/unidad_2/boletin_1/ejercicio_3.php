@@ -10,7 +10,7 @@
     <?php
     $max = 1;
     $min = 6;
-    $rand = rand ($min, $max);
+    $rand = rand($min, $max);
     $imagen = "./imagenes/dado/$rand.jpg";
 
     echo "<img src='$imagen' alt='Cara de dado aleatoria'/>

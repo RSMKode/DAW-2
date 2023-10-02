@@ -10,8 +10,8 @@
     <?php
     $max = 1;
     $min = 6;
-    $rand1 = rand ($min, $max);
-    $rand2 = rand ($min, $max);
+    $rand1 = rand($min, $max);
+    $rand2 = rand($min, $max);
     $imagen1 = "./imagenes/dado/$rand1.jpg";
     $imagen2 = "./imagenes/dado/$rand2.jpg";
 

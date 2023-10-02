@@ -12,13 +12,13 @@
 
     $numeros = array();
     echo "<h2>Animal aleatorio</h2>";
-    for($i=0;$i< $tiradas;$i++){
-        $numeros[] = rand(1,6);
+    for ($i = 0; $i < $tiradas; $i++) {
+        $numeros[] = rand(1, 6);
         echo "<img src=\"./imagenes/dado/$numeros[$i].jpg\" alt=\"Cara de dado aleatoria\"/>";
     }
-    $total = $numeros[0]+$numeros[1];
+    $total = $numeros[0] + $numeros[1];
 
-    switch ($total){
+    switch ($total) {
         case 1:
             $animal = "burro";
             break;
@@ -55,10 +55,9 @@
         case 12:
             $animal = "hipopotamo";
             break;
-        
     }
     ?>
-    <img src="./imagenes/animales/<?= $animal?>.jpg" alt="Animal aleatorio"/>
+    <img src="./imagenes/animales/<?= $animal ?>.jpg" alt="Animal aleatorio" />
     <hr />
     <p><strong><a href="./ejercicio_8.php">Volver a tirar</a></strong></p>
     <p><a href="./">Volver atrás</a></p>
