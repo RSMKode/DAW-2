@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <h1>Ejercicio 2-8</h1>
+    <h1>Ejercicio 2-10</h1>
     <?php
     $pila = array("cinco" => 5, "uno" => 1, "cuatro" => 4, "dos" => 2, "tres" => 3);
 

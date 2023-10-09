@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <h1>Ejercicio 12</h1>
+    <h1>Ejercicio 2-5</h1>
     <ol>
         <?php
         $numeros = [];

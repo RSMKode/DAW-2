@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <h1>Ejercicio 2-8</h1>
+    <h1>Ejercicio 2-11</h1>
     <?php
     $paises = [
         "España" => "Madrid",
