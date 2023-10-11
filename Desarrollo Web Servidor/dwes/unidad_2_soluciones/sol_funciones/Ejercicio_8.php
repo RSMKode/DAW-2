@@ -20,4 +20,3 @@ function cabecera($titulo = NULL)
 }
 
 echo cabecera(NULL);
-?>

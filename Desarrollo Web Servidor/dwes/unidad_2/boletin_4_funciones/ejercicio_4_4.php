@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <h1>Ejercicio 4-3</h1>
+    <h1>Ejercicio 4-4</h1>
 
     <?php
 
@@ -26,18 +26,19 @@
     }
 
     //Compara dos cadenas ignorando mayúsculas y minúsculas y sin tildes ni espacios utilizando las funciones anteriores.
-    function compCaseEsp (string $cadena1, string $cadena2) : int {
+    function compCaseEsp(string $cadena1, string $cadena2): int
+    {
         $newCadena1 = sinTildes(sinEspacios($cadena1));
         $newCadena2 = sinTildes(sinEspacios($cadena2));
-        
+
         return strcasecmp($newCadena1, $newCadena2);
     }
 
     $cadena1 = "    La  vida es   asi  de  dura  ";
     $cadena2 = " La vida Es Así de Dura ";
 
-    
-    
+
+
     echo "La cadena 1 --> <pre>$cadena1</pre> y cadena 2 --> <pre>$cadena2</pre> ";
     echo  compCaseEsp($cadena1, $cadena2) == 0 ? "Son iguales" : "No son iguales";
     ?>
