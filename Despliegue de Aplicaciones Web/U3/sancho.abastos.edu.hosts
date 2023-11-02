@@ -1,0 +1,16 @@
+;
+; Zona sancho.abastos.edu
+;
+$ttl 604800
+sancho.abastos.edu.	IN	SOA	sancho.abastos.edu. root.sancho.abastos.edu. (
+			2023110102
+			604800
+			86400
+			2419200
+			604800 )
+;
+@	IN	NS	ns1.sancho.abastos.edu.
+@	IN	NS	ns2.sancho.abastos.edu.
+ns1	IN	A	192.168.0.30
+ns2	IN	A	192.168.0.29
+pc2	IN	A	192.168.0.13
