@@ -9,12 +9,12 @@ function solicitarDNI() {
   // Si el DNI es "-1", terminamos el programa
   if (dni === -1) {
     clearInterval(intervalo);
-    return console.log(letrasDNI);
+    return alert(letrasDNI);
   }
 
   // Si el DNI no es válido, lo volvemos a solicitar
   if (!/^\d{8}$/.test(dni)) {
-    console.log("El DNI introducido no es válido.");
+    alert("El DNI introducido no es válido.");
     solicitarDNI();
     return;
   }
