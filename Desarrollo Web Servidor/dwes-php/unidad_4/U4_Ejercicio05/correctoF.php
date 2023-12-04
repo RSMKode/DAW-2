@@ -6,7 +6,7 @@ echo cabecera();
 
 $archivo = fopen($rutaArchivos . DIRECTORY_SEPARATOR . "datosUsuarios.txt", "r");
 while (!feof($archivo)) {
-    $linea = str_replace("\n", "", fgets($archivo));
+    $linea = str_replace(PHP_EOL, "", fgets($archivo));
 
     if ($linea != "") {
         $datos = explode(";", $linea);

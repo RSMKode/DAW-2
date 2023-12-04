@@ -2,3 +2,4 @@ Roger;25;imagenes\Poster Naruto.jpg;07-11-2023 19:21:04
 Lidia;23;imagenes\Poster AoT.jpg;07-11-2023 19:38:16
 Miau;5;imagenes\1699383162Poster AoT.jpg;07-11-2023 19:52:42
 Eugenia;58;imagenes\Logo_instagram.webp;07-11-2023 20:10:14
+Whiskas;23;imagenes\Logo_behance.png;20-11-2023 18:45:17

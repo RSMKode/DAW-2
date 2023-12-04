@@ -1,0 +1,14 @@
+SQLSTATE[HY000] [1049] Unknown database 'bd_curso_php.sql'##Código: 1049  0.21730500 1670428255
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'empleados' already exists## Fichero: C:\xampp\htdocs\DWES\PHP\13BaseDatos\BDEjercicio1\crearBD.php## Línea: 13##Código: 42S01##Instante: 0.57077900 1670598148
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'empleados' already exists## Fichero: C:\xampp\htdocs\DWES\PHP\13BaseDatos\BDEjercicio1\crearBD.php## Línea: 13##Código: 42S01##Instante: 0.40536100 1670600514
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'empleados' already exists## Fichero: C:\xampp\htdocs\DWES\PHP\13BaseDatos\BDEjercicio1\crearBD.php## Línea: 13##Código: 42S01##Instante: 0.23561000 1670601832
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Viyuela,Conserje,2022-12-23,980,4)' at line 1## Fichero: C:\xampp\htdocs\DWES\PHP\13BaseDatos\BDEjercicio1\inserta.php## Línea: 10##Código: 42000##Instante: 0.19411200 1670603140
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'empleados' already exists## Fichero: C:\xampp\htdocs\DWES\PHP\13BaseDatos\BDEjercicio1\crearBD.php## Línea: 13##Código: 42S01##Instante: 0.36665400 1670603227
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'empleados' already exists## Fichero: F:\xampp\htdocs\DWES\unidad_5_PDO\BDEjercicio1\crearBD.php## Línea: 13##Código: 42S01##Instante: 0.59557400 1670796413
+SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)##Código: 1045  0.74747000 1670796534
+SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)##Código: 1045  0.77664100 1670796578
+SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)## Fichero: F:\xampp\htdocs\DWES\unidad_5_PDO\BDEjercicio1\crearBD_ejercicio_0.php## Línea: 5##Código: 1045##Instante: 0.08810500 1670798205
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'empleados' already exists## Fichero: F:\xampp\htdocs\DWES\unidad_5_PDO\BDEjercicio1\crearBD_ejercicio_0.php## Línea: 14##Código: 42S01##Instante: 0.13993000 1670798276
+SQLSTATE[HY000]: General error: trying to execute an empty query## Fichero: F:\xampp\htdocs\DWES\unidad_5_PDO\BDEjercicio1\crearBD_ejercicio_0.php## Línea: 14##Código: HY000##Instante: 0.27872300 1671142336
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'empleados' already exists## Fichero: F:\xampp\htdocs\DWES\unidad_5_PDO\BDEjercicio1\crearBD_ejercicio_0.php## Línea: 14##Código: 42S01##Instante: 0.18789700 1671142486
+SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'empleados' already exists## Fichero: F:\xampp\htdocs\DWES\unidad_5_PDO\BDEjercicio1\crearBD_ejercicio_0.php## Línea: 14##Código: 42S01##Instante: 0.46069400 1673432903

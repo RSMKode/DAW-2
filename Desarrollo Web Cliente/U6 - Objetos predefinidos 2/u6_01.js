@@ -47,7 +47,6 @@ function letraDNI(dni) {
     "C",
     "K",
     "E",
-    "T",
   ];
   return letras[dni % 23];
 }

@@ -3,7 +3,7 @@ No ejecutes este fichero directamente. Se carga desde ejercicio1.php con un incl
 -->
 
 <form action="" method="post" enctype="multipart/form-data">
-    Nombre: <input type="text" name="nombre" value="<?= isset($nombre) ? $nombre : ""; ?>" placeholder="Introduce aquí tu nombre">
+    Nombre: <input type="text" name="nombre" value="<?= isset($nombre) ? $nombre : "" ?>" placeholder="Introduce aquí tu nombre">
     <br>
     <?php
     echo (isset($errores['nombre'])) ? $errores['nombre'] . "<br>" : "";
@@ -15,10 +15,11 @@ No ejecutes este fichero directamente. Se carga desde ejercicio1.php con un incl
     echo (isset($errores['edad'])) ? $errores['edad'] . "<br>" : "";
     ?>
     Foto:
-    <input type="file" name="imagen" id="imagen">
+    <input type="file" name="imagen">
     <br>
     <?php
     echo (isset($errores['imagen'])) ? $errores['imagen'] . "<br>" : "";
     ?>
     <input type="submit" name="enviar" value="Enviar">
+    <input type="reset" name="reset" value="Borrar">
 </form>

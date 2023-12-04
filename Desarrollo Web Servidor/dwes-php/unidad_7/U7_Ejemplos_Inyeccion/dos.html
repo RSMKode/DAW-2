@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title></title>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<!--Para probar el formulario con los diferentes documentos .php tienes que ir 
+cambiando el action -->
+
+<form name="login" method="post" action="consulta.php"> 
+<!--<form name="login" method="get" action="consultaPreparada.php">-->
+<!--<form name="login" method="get" action="consultaMalPreparada.php"> -->
+
+	<p>Para probar si nuestro código evita o no la inyección de datos en la BD, 
+	prueba con los valores que aparecen a continuación</p>
+    USUARIO <input type="text" name="usuario"><br>
+    Probar poniendo loquesea
+    <br>
+    CLAVE <input type="text" name="clave"><br>
+    Probar poniendo loquesea' OR '1'='1
+    <br>
+    
+    <input type="submit" value="Enviar">
+    <input type="reset" value="Borrar todo">
+</form>
+</body>
+</html>

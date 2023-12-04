@@ -10,7 +10,7 @@
 /**
  * Donde almacenaremos las imágenes que nos suben los usuarios
  */
-$rutaImagenes = "images";
+$rutaImagenes = "imagenes";
 
 //Ruta donde almacenaremos los archivos
 $rutaArchivos = "archivos";
@@ -23,7 +23,7 @@ $extensionesValidas = ["jpeg", "gif", "jpg", "png", "webp"];
 /**
  * Tamaño máximo del fichero subido. En bytes
  */
-$maxFichero = 2000000;
+$maxFichero = 20000000;
 
 //Formatos de fecha válidos
 const FORMATOS_FECHA = ["dd-mm-aaaa", "aaaa-mm-dd"];

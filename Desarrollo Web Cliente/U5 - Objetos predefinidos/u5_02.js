@@ -2,7 +2,9 @@
 
 const cadenaD = "roger:sancho:987654321:rogersanchom@gmail.com:46007";
 
-let cadena = prompt('Introduce una cadena con formato: “nombre:apellidos:telefono:email:codigopostal"');
+let cadena = prompt(
+  'Introduce una cadena con formato: “nombre:apellidos:telefono:email:codigopostal"'
+);
 
 if (cadena === "") cadena = cadenaD;
 

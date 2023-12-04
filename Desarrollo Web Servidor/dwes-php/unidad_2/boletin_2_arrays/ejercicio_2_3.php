@@ -29,6 +29,7 @@
         }
         echo "<pre>";
         print_r($multiplos);
+        echo "<pre>";
         ?>
     </ol>
     <p><a href="./">Volver atrás</a></p>

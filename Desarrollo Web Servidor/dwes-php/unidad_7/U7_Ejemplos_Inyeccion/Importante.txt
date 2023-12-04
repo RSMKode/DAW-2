@@ -1,0 +1,2 @@
+Los tres ejemplos funcionan con el formulario dos.html,
+ de manera que hay que cambiar el action para poder probar los 3 ejemplos.
