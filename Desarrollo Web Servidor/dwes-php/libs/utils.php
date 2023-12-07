@@ -2,43 +2,9 @@
 
 /**
  * Librería con funciones generales y de validación
- * @author Roger, Jonathan
+ * @author Roger, Jonathan, Heike Bonilla
  * 
  */
-
-//Crea la cabecera del html con el título indicado
-function cabecera(string $titulo = NULL, string $archivo_css = NULL)
-{
-    $titulo = (is_null($titulo))
-        ? basename(__FILE__)
-        : $titulo;
-    $cabecera_css = (is_null($archivo_css))
-        ? ''
-        : '<link rel="stylesheet" type="text/css" href="' . $archivo_css . '">';
-
-    $cabecera = '
-            <!DOCTYPE html>
-            <html lang="es">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial scale=1.0">
-                    ' . $cabecera_css . '
-                    <title>' . $titulo . '</title>
-                </head>
-                <body>
-        ';
-    echo $cabecera;
-}
-
-
-// Crea el cierre del html
-function pie()
-{
-    echo '        
-                </body>
-            </html>
-        ';
-}
 
 /**
  * funcion sinTildes
@@ -130,10 +96,10 @@ function compCaseEsp(string $cadena1, string $cadena2): int
  * @param string $var
  * @return string
  */
-function recoge(string $var): string
+function recoge(string $campo): string
 {
-    if (isset($_REQUEST[$var]) && (!is_array($_REQUEST[$var]))) {
-        $tmp = sinEspacios($_REQUEST[$var]);
+    if (isset($_REQUEST[$campo]) && (!is_array($_REQUEST[$campo]))) {
+        $tmp = sinEspacios($_REQUEST[$campo]);
         $tmp = strip_tags($tmp);
     } else
         $tmp = "";
@@ -150,11 +116,11 @@ function recoge(string $var): string
  * @return array
  */
 
-function recogeArray(string $var): array
+function recogeArray(string $campo): array
 {
     $array = [];
-    if (isset($_REQUEST[$var]) && (is_array($_REQUEST[$var]))) {
-        foreach ($_REQUEST[$var] as $valor)
+    if (isset($_REQUEST[$campo]) && (is_array($_REQUEST[$campo]))) {
+        foreach ($_REQUEST[$campo] as $valor)
             $array[] = strip_tags(sinEspacios($valor));
     }
 
@@ -167,14 +133,16 @@ function recogeArray(string $var): array
 /**
  * Funcion cTexto
  *
- * Valida una cadena de texto con respecto a una RegEx. Reporta error en un array.
- * Le pasamos cadena, nombre de campo y array de errores y 
+ * Valida una cadena de texto con respecto a una RegEx.
+ * Reporta error en un array.
+ * Le pasamos cadena, nombre de campo, array de errores, tipo y 
  * de manera voluntaria mínimo y máximo de caracteres (si = sería campo no requerido) , 
  * si permitimos o no espacios en nuestra cadena y si la cadena es o no sensible a mayúsculas
  * 
  * @param string $text
  * @param string $campo
  * @param array $errores
+ * @param string $tipo
  * @param integer $min
  * @param integer $max
  * @param bool $espacios
@@ -182,28 +150,54 @@ function recogeArray(string $var): array
  * @return bool
  *
  */
-function cTexto(string $text, string $campo, array &$errores, int $max = 30, int $min = 1, bool $espacios = TRUE, bool $case = TRUE)
+function cTexto(string $text, string $campo, array &$errores, string $tipo = "nombre", int $max = 30, int $min = 1, bool $espacios = TRUE, bool $case = TRUE)
 {
     $case = ($case === TRUE) ? "i" : "";
     $espacios = ($espacios === TRUE) ? " " : "";
-    if ((preg_match("/^[a-zñ$espacios]{" . $min . "," . $max . "}$/u$case", sinTildes($text)))) {
+    switch ($tipo) {
+        case "nombre":
+            $regexp = "/^[a-zñÑ$espacios]{" . $min . "," . $max . "}$/u$case";
+            break;
+
+        case "correo":
+            $regexp = "/^[a-zñÑ][a-z0-9_\.]{2,}@[a-zñÑ\.]{3,}[\.][a-zñÑ]{2,}$/ui";
+            break;
+
+        case "pass":
+            $regexp = "/^[a-zñÑ0-9-_@$espacios]{" . $min . "," . $max . "}$/u$case";
+            break;
+
+        case "comentario":
+            $regexp = "/^[a-zñÑ0-9-\.,;$espacios]{" . $min . "," . $max . "}$/u$case";
+            break;
+
+        case "ubi":
+            //$regexp = "/^[A-Za-z0-9\s,.ºª\/-]+,\s*(\d{1,3}(?:\s*[A-Za-z])?)(?:,\s*[Pp]iso\s*\d{1,2}(?:\s*[A-Za-z])?)?(?:,\s*[Pp]uerta\s*\d{1,3}(?:\s*[A-Za-z])?)?,\s*\d{5}$/$espacios]{" . $min . "," . $max . "}$/u$case";
+            $regexp = "/^[a-zñÑ0-9-\/\.,;$espacios]{" . $min . "," . $max . "}$/u$case";
+            break;
+    }
+
+    if ((preg_match($regexp, sinTildes($text)))) {
         return true;
     }
+
     $errores[$campo] = "Error en el campo $campo";
     return false;
 }
 
-function cPass(string $text, string $campo, array &$errores, int $max = 30, int $min = 4, bool $espacios = TRUE, bool $case = TRUE)
-{
-    $case = ($case === TRUE) ? "i" : "";
-    $espacios = ($espacios === TRUE) ? " " : "";
-    if ((preg_match("/^[a-zñ0-9-_$espacios]{" . $min . "," . $max . "}$/u$case", sinTildes($text)))) {
-        return true;
-    }
-    $errores[$campo] = "Error en el campo $campo";
-    return false;
-}
-
+/**
+ * Funcion cFecha
+ *
+ * Valida una fecha en función de 2 formatos posibles definidos en config.
+ * Además comprueba si el usuario es mayor de edad
+ * 
+ * @param string $text
+ * @param string $campo
+ * @param array $errores
+ * @param string $formato
+ * @return bool
+ *
+ */
 function cFecha(string $fecha, string $campo, array &$errores, string $formato)
 {
     $fechaArray = explode("-", $fecha);
@@ -218,21 +212,19 @@ function cFecha(string $fecha, string $campo, array &$errores, string $formato)
         $y = $fechaArray[0];
     }
 
-    if (checkdate($m, $d, $y)) return true;
+    $fechaNacSegundos = strtotime($fecha);
+    $edadEnSegundos = time() - $fechaNacSegundos;
+    $mayoriaEdad = 60 * 60 * 24 * 365 * 18;
 
-    $errores[$campo] = "Error en el campo $campo";
-    return false;
-}
-
-function cCorreo(string $text, string $campo, array &$errores)
-{
-
-    $regexCorreo = "/^[a-zñÑ][a-z0-9_\.]{2,}@[a-zñÑ\.]{3,}[\.][a-zñÑ]{2,}$/ui";
-
-    if ((preg_match($regexCorreo, sinTildes($text)))) {
-        return true;
+    if ($edadEnSegundos >= $mayoriaEdad) {
+        if (checkdate($m, $d, $y)) {
+            return true;
+        } else {
+            $errores[$campo] = "Error en el campo $campo";
+        };
+    } else {
+        $errores[$campo] = "No puedes registrarte, eres menor de 18 años";
     }
-    $errores[$campo] = "Error en el campo $campo, por favor, introduce un correo con este formato correo@dominio.com";
     return false;
 }
 
@@ -298,6 +290,19 @@ function cSelect(string $text, string $campo, array &$errores, array $valores, b
     return false;
 }
 
+//Funcion de validacion de Select
+function cSelectAsociativo(string $text, string $campo, array &$errores, array $valores, bool $requerido = TRUE): bool
+{
+    if (!$requerido && $text == "") {
+        return true;
+    }
+    if (array_key_exists($text, $valores)) {
+        return true;
+    }
+    $errores[$campo] = "Error en el campo $campo";
+    return false;
+}
+
 /**
  * Funcion cCheck
  *
@@ -312,7 +317,6 @@ function cSelect(string $text, string $campo, array &$errores, array $valores, b
  * 
  * @return boolean
  */
-
 function cCheck(array $arr, string $campo, array &$errores, array $valores, bool $requerido = TRUE)
 {
 
@@ -401,5 +405,85 @@ function cFile(string $nombre, array &$errores, array $extensionesValidas, strin
                 return false;
             }
         }
+    }
+}
+
+/**
+ * Funcion cInactividad
+ * 
+ * Comprueba la inactividad de un usuario que ha iniciado sesión
+ *
+ * @param int $segundos
+ * 
+ * @return void
+ */
+function cInactividad(int $segundos = 60 * 30): void
+{
+    if (isset($_SESSION["momentoLogin"])) {
+
+        if (time() > $_SESSION["momentoLogin"] + $segundos) {
+            header("Location:" . APP_ROOT . "src/pages/perfil/cerrar-sesion.php");
+        } else {
+            $_SESSION["momentoLogin"] = time();
+        }
+    }
+}
+
+/**
+ * Funcion regenerarSesion
+ * 
+ * Regenera el id de sesión
+ *
+ * @param int $segundos
+ * 
+ * @return void
+ */
+function regenerarSesion(int $segundos = 60 * 5): void
+{
+    if (isset($_SESSION["momentoLogin"])) {
+        if (time() > $_SESSION["momentoLogin"] + $segundos) {
+            session_regenerate_id(true);
+        }
+    }
+}
+
+/**
+ * Funcion cIP
+ * 
+ * Comprueba que la ip actual sea la misma que la del inicio de sesión
+ * 
+ * @return void
+ */
+function cIP()
+{
+    if (isset($_SESSION["ip"])) {
+
+        if ($_SESSION["ip"] != $_SERVER["REMOTE_ADDR"]) {
+            header("Location:" . APP_ROOT . "src/pages/perfil/cerrar-sesion.php");
+        }
+    }
+}
+
+/**
+ * Funcion cColor
+ * 
+ * Comprueba el color de la página preferente por el usuario.
+ * Si no existe la cookie, la crea con el color predeterminado.
+ * Si existe y se detecta un nuevo esquema de color, se cambia el valor de la cookie.
+ * 
+ * @return void
+ */
+function cColor()
+{
+    if (!isset($_COOKIE['esquemaColor'])) {
+        setcookie('esquemaColor', TEMAS[1], path: "/");
+        header('Refresh:0');
+        return;
+    } else {
+        if (isset($_POST['nuevoEsquemaColor'])) {
+            setcookie('esquemaColor', $_POST['nuevoEsquemaColor'], path: "/");
+            header('Refresh:0');
+        }
+        return;
     }
 }

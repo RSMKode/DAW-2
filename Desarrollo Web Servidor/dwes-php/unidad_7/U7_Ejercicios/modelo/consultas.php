@@ -7,6 +7,7 @@ function selectLocalidadesForm($pdo)
     if ($resultado = $pdo->query($consulta)) {
 
         $arrayresultado = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
         $resultado->closeCursor();
         $resultado = null;
     }
@@ -14,7 +15,7 @@ function selectLocalidadesForm($pdo)
     //La key es id_localidad y el valor la localidad
     foreach ($arrayresultado as $key => $valor) {
 
-        $array["{$valor['id_localidad']}"] = $valor['localidad'];
+        $array[$valor['id_localidad']] = $valor['localidad'];
     }
 
     return $array;
@@ -22,21 +23,38 @@ function selectLocalidadesForm($pdo)
 
 function insertEmpleado($pdo, $nombre, $puesto, $fecha_nacimiento, $salario, $localidad, $user, $pass)
 {
+    $array = [
+        'nombre' => $nombre,
+        'puesto' => $puesto,
+        'fecha_nacimiento' => $fecha_nacimiento,
+        'salario' => $salario,
+        'localidad' => $localidad,
+        'user' => $user,
+        'pass' => $pass
+    ];
 
     $consulta = "INSERT INTO empleados (nombre, puesto, fecha_nacimiento, salario, localidad, user, pass) 
-    VALUES (?,?,?,?,?,?,?)";
+    VALUES (:nombre, :puesto, :fecha_nacimiento, :salario, :localidad, :user, :pass)";
 
     $stmt = $pdo->prepare($consulta);
-    $stmt->bindparam(1, $nombre);
-    $stmt->bindParam(2, $puesto);
-    $stmt->bindParam(3, $fecha_nacimiento);
-    $stmt->bindparam(4, $salario);
-    $stmt->bindparam(5, $localidad);
-    $stmt->bindparam(6, $user);
-    $stmt->bindparam(7, $pass);
 
-    ///Pasar array
-    return $stmt->execute();
+    //Pasar array
+    return $stmt->execute($array);
+
+    // $consulta = "INSERT INTO empleados (nombre, puesto, fecha_nacimiento, salario, localidad, user, pass) 
+    // VALUES (?,?,?,?,?,?,?)";
+
+    // $stmt = $pdo->prepare($consulta);
+    // $stmt->bindparam(1, $nombre);
+    // $stmt->bindParam(2, $puesto);
+    // $stmt->bindParam(3, $fecha_nacimiento);
+    // $stmt->bindparam(4, $salario);
+    // $stmt->bindparam(5, $localidad);
+    // $stmt->bindparam(6, $user);
+    // $stmt->bindparam(7, $pass);
+
+    // ///Pasar array
+    // return $stmt->execute();
 }
 
 function selectEmpleados($pdo)
@@ -46,20 +64,10 @@ function selectEmpleados($pdo)
     if ($resultado = $pdo->query($consulta)) {
 
         $arrayresultado = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
         $resultado->closeCursor();
         $resultado = null;
+
         return $arrayresultado;
     }
-}
-
-function verificaUsuario($pdo, $user)
-{
-    $consulta = "SELECT id, nombre,pass FROM empleados where user=?";
-
-    $stmt = $pdo->prepare($consulta);
-    $stmt->bindparam(1, $user);
-    $stmt->execute();
-    $arrayresultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $resultado = null;
-    return $arrayresultado;
 }

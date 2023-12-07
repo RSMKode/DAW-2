@@ -1,0 +1,3 @@
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined## Fichero: E:\DAW 2º\Desarrollo Web Servidor\dwes-php\unidad_7\U7_Ejercicios\modelo\consultas.php## Línea: 32##Código: HY093##Instante: 0.34786100 1701957995
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined## Fichero: E:\DAW 2º\Desarrollo Web Servidor\dwes-php\unidad_7\U7_Ejercicios\modelo\consultas.php## Línea: 32##Código: HY093##Instante: 0.38932800 1701958014
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined## Fichero: E:\DAW 2º\Desarrollo Web Servidor\dwes-php\unidad_7\U7_Ejercicios\modelo\consultas.php## Línea: 32##Código: HY093##Instante: 0.58267000 1701958031
