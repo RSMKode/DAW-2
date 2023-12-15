@@ -71,3 +71,15 @@ function selectEmpleados($pdo)
         return $arrayresultado;
     }
 }
+
+function verificaUsuario($pdo, $user)
+{
+    $consulta = "SELECT id, nombre, pass FROM empleados where user=?";
+
+    $stmt = $pdo->prepare($consulta);
+    $stmt->bindparam(1, $user);
+    $stmt->execute();
+    $arrayresultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $resultado = null;
+    return $arrayresultado;
+}

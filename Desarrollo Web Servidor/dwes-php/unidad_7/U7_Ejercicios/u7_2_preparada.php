@@ -45,13 +45,13 @@ try {
                 header("location:u7_1_BUENA.php");
             } else {
                 $errores["datos"] = "Ha habido un error";
-                require("formInsert.php");
+                require("form-insert.php");
             }
         } else {
-            require("formInsert.php");
+            require("form-insert.php");
         }
     } else {
-        require("formInsert.php");
+        require("form-insert.php");
     }
 } catch (PDOException $e) {
     // En este caso guardamos los errores en un archivo de errores log

@@ -33,7 +33,7 @@ try {
 
 } catch (PDOException $e) {
     // En este caso guardamos los errores en un archivo de errores log
-    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logerr.txt");
-    //guardamos en $errores el error que queremos mostrar a los usuarios
+    // En este caso guardamos los errores en un archivo de errores log
+    error_log($e->getMessage() . "## Fichero: " . $e->getFile() . "## Línea: " . $e->getLine() . "##Código: " . $e->getCode() . "##Instante: " . microtime() . PHP_EOL, 3, "logBD.txt");    //guardamos en $errores el error que queremos mostrar a los usuarios
     $errores["datos"] = "Ha habido un error <br>";
 }
